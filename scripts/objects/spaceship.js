@@ -61,8 +61,11 @@ export const createSpaceship = (app) => {
             // Видаляємо кулю, якщо вона виходить за межі екрану
            
         }
+
+        
     });
 
     spaceship.bullets = bullets; // Додаємо масив куль до об'єкта кораблика
+    
     return spaceship;
 }

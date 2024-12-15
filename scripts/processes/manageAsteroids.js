@@ -29,6 +29,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
                 return; // Завершуємо гру
             }
         }
+       
     });
 };
 

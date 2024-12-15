@@ -33,10 +33,6 @@ const asteroids = createAsteroids (app , 10)
 manageAsteroids(app, spaceship, asteroids, (message) => endGame(app, message));
 
 // Запускаємо таймер гри
-startGameTimer(60, () => {
-  if (asteroids.length > 0) {
-      endGame("YOU LOSE");
-  } else {
-      endGame("YOU WIN");
-  }
+startGameTimer(app, 15, (message) => {
+  endGame(app, message);
 });

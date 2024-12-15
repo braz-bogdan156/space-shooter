@@ -1,6 +1,10 @@
-export const startGameTimer = (app, duration, onEnd) => {
+
+
+export const startGameTimer = (app, duration) => {
     let timeLeft = duration;
 
+
+    // Створення тексту таймера
     const timerText = new PIXI.Text(`Time: ${timeLeft}`, {
         fontFamily: "Arial",
         fontSize: 32,
@@ -10,13 +14,19 @@ export const startGameTimer = (app, duration, onEnd) => {
     timerText.y = 10;
     app.stage.addChild(timerText);
 
+    // Оновлення таймера щосекунди
     const timerInterval = setInterval(() => {
-        timeLeft--;
-        timerText.text = `Time: ${timeLeft}`;
+        if (timeLeft > 0) {
+            timeLeft--;
+            timerText.text = `Time: ${timeLeft}`;
+        }
 
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            onEnd();
+        // Якщо час закінчився і гра ще не завершена
+        if (timeLeft === 0 ) {
+           
+            clearInterval(timerInterval); // Зупиняємо таймер
+            timerText.text = `Time: 0`;
+           
         }
     }, 1000);
 };
