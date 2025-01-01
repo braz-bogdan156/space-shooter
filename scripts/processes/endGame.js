@@ -1,8 +1,8 @@
-export const endGame = (app, message) => {
+export const endGame = (app, message, color) => {
     const endText = new PIXI.Text(message, {
         fontFamily: "Arial",
         fontSize: 64,
-        fill: "red",
+        fill: color,
         align: "center",
     });
 

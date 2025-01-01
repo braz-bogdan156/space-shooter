@@ -25,8 +25,13 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
 
             // Перевірка зіткнення астероїда з кораблем
             if (asteroids[i] && hitTestRectangle(asteroids[i], spaceship)) {
-                endGame("YOU LOSE");
+                endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
+            }
+
+            if (asteroids.length === 0 && spaceship.bullets.length === 0 ) {
+                endGame("YOU WIN", "green");
+                return;
             }
         }
        

@@ -30,9 +30,10 @@ const spaceship = createSpaceship(app);
 const asteroids = createAsteroids (app , 10)
 
 
-manageAsteroids(app, spaceship, asteroids, (message) => endGame(app, message));
+// Обробляємо астероїди
+manageAsteroids(app, spaceship, asteroids, (message, color) => endGame(app, message, color));
 
 // Запускаємо таймер гри
 startGameTimer(app, 15, (message) => {
-  endGame(app, message);
+    endGame(app, message, 'red');
 });
