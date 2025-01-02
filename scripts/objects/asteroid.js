@@ -1,7 +1,7 @@
-export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000) => {
+export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, asteroidData) => {
     const asteroids = [];
     let currentSpeed = 1; // Початкова швидкість
-    let spawnedAsteroids = 0;
+    
 
     // Функція для створення одного астероїда
     const spawnAsteroid = () => {
@@ -18,17 +18,17 @@ export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000) => {
 
     // Функція для створення групи астероїдів
     const spawnAsteroidGroup = () => {
-        const asteroidsToSpawn = Math.min(2, totalAsteroids - spawnedAsteroids); // Спавнимо максимум 2 астероїди
+        const asteroidsToSpawn = Math.min(2, totalAsteroids - asteroidData.spawnedAsteroids); // Спавнимо максимум 2 астероїди
         for (let i = 0; i < asteroidsToSpawn; i++) {
             spawnAsteroid();
-            spawnedAsteroids++;
+            asteroidData.spawnedAsteroids++;
         }
 
         // Збільшуємо швидкість астероїдів
         currentSpeed += 0.5;
 
         // Зупиняємо спаун, якщо всі астероїди створені
-        if (spawnedAsteroids >= totalAsteroids) {
+        if (asteroidData.spawnedAsteroids >= totalAsteroids) {
             clearInterval(spawnInterval);
         }
     };

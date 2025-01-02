@@ -1,4 +1,4 @@
-export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
+export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData, totalAsteroids) => {
     app.ticker.add(() => {
         for (let i = asteroids.length - 1; i >= 0; i--) {
             if (!asteroids[i]) continue; // Перевірка на наявність астероїда
@@ -28,8 +28,9 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame) => {
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
-
-            if (asteroids.length === 0 && spaceship.bullets.length === 0 ) {
+            
+            
+            if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids ) {
                 endGame("YOU WIN", "green");
                 return;
             }

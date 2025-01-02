@@ -27,11 +27,14 @@ app.stage.addChild(background);
 // Створюємо корабель
 const spaceship = createSpaceship(app);
 
-const asteroids = createAsteroids (app , 10)
+const asteroidData = { spawnedAsteroids: 0};
+const totalAsteroids = 10;
+
+const asteroids = createAsteroids (app , totalAsteroids, 3000, asteroidData)
 
 
 // Обробляємо астероїди
-manageAsteroids(app, spaceship, asteroids, (message, color) => endGame(app, message, color));
+manageAsteroids(app, spaceship, asteroids, (message, color) => endGame(app, message, color), asteroidData, totalAsteroids);
 
 // Запускаємо таймер гри
 startGameTimer(app, 15, (message) => {
