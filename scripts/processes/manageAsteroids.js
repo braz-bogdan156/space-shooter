@@ -28,7 +28,14 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
-            
+            console.log("Bullets:", spaceship.bullets.length);
+            console.log("Asteroids on screen:", asteroids.length);
+            console.log("Spawned asteroids:", asteroidData.spawnedAsteroids);
+            console.log("Total asteroids:", totalAsteroids);
+            if (spaceship.bullets.length === 0 && (asteroids.length !== 0 || asteroidData.spawnedAsteroids < totalAsteroids)) {
+                endGame("YOU LOSE", "red");
+                return;
+            }
             
             if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids ) {
                 endGame("YOU WIN", "green");
