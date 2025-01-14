@@ -1,4 +1,6 @@
-export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, asteroidData) => {
+
+
+export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, endGame, asteroidData) => {
     const asteroids = [];
     let currentSpeed = 1; // Початкова швидкість
     
@@ -41,10 +43,14 @@ export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, aste
         for (let i = asteroids.length - 1; i >= 0; i--) {
             asteroids[i].y += currentSpeed; // Рух вниз зі змінною швидкістю
 
-            // Видаляємо астероїд, якщо він виходить за межі екрана
+            // Видаляємо астероїд, якщо він виходить за межі екрана й виводимо повідомлення про програш,
+            // адже гравець відповідно 
+            // по ньому не попав
             if (asteroids[i].y > app.screen.height) {
                 app.stage.removeChild(asteroids[i]);
                 asteroids.splice(i, 1);
+                endGame("YOU LOSE", "red"); 
+                return; // Завершуємо гру
             }
         }
     });

@@ -5,7 +5,7 @@ export const createSpaceship = (app) => {
     spaceship.height = 150;
 
     spaceship.x = app.screen.width / 2 - 75;
-    spaceship.y = app.screen.height - 175;
+    spaceship.y = app.screen.height - 300;
     app.stage.addChild(spaceship);
 
     const bullets = [];

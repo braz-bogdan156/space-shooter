@@ -1,4 +1,7 @@
+
+
 export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData, totalAsteroids) => {
+ 
     app.ticker.add(() => {
         for (let i = asteroids.length - 1; i >= 0; i--) {
             if (!asteroids[i]) continue; // Перевірка на наявність астероїда
@@ -12,6 +15,7 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
                 continue;
             }
 
+
             // Перевірка зіткнення астероїда з кулями корабля
             for (let j = spaceship.bullets.length - 1; j >= 0; j--) {
                 if (hitTestRectangle(spaceship.bullets[j], asteroids[i])) {
@@ -19,8 +23,10 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
                     app.stage.removeChild(spaceship.bullets[j]);
                     asteroids.splice(i, 1);
                     spaceship.bullets.splice(j, 1);
+
                     break;
                 }
+
             }
 
             // Перевірка зіткнення астероїда з кораблем
@@ -28,21 +34,18 @@ export const manageAsteroids = (app, spaceship, asteroids, endGame, asteroidData
                 endGame("YOU LOSE", "red");
                 return; // Завершуємо гру
             }
-            console.log("Bullets:", spaceship.bullets.length);
-            console.log("Asteroids on screen:", asteroids.length);
-            console.log("Spawned asteroids:", asteroidData.spawnedAsteroids);
-            console.log("Total asteroids:", totalAsteroids);
-            if (spaceship.bullets.length === 0 && (asteroids.length !== 0 || asteroidData.spawnedAsteroids < totalAsteroids)) {
+            if (spaceship.bullets.length === totalAsteroids && (asteroids.length !== totalAsteroids || asteroidData.spawnedAsteroids < totalAsteroids)) {
                 endGame("YOU LOSE", "red");
                 return;
             }
             
-            if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids ) {
-                endGame("YOU WIN", "green");
+
+            if (asteroids.length === 0 && spaceship.bullets.length === 0 && asteroidData.spawnedAsteroids >= totalAsteroids) {
+                endGame("YOU WIN", "green")
                 return;
             }
         }
-       
+
     });
 };
 
@@ -52,7 +55,7 @@ function hitTestRectangle(r1, r2) {
     const r2Bounds = r2.getBounds();
 
     return r1Bounds.x < r2Bounds.x + r2Bounds.width &&
-           r1Bounds.x + r1Bounds.width > r2Bounds.x &&
-           r1Bounds.y < r2Bounds.y + r2Bounds.height &&
-           r1Bounds.y + r1Bounds.height > r2Bounds.y;
+        r1Bounds.x + r1Bounds.width > r2Bounds.x &&
+        r1Bounds.y < r2Bounds.y + r2Bounds.height &&
+        r1Bounds.y + r1Bounds.height > r2Bounds.y;
 }

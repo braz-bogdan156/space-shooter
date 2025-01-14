@@ -1,5 +1,6 @@
 
 
+
 export const startGameTimer = (app, duration) => {
     let timeLeft = duration;
 
@@ -13,20 +14,21 @@ export const startGameTimer = (app, duration) => {
     timerText.x = 10;
     timerText.y = 10;
     app.stage.addChild(timerText);
+// Оновлення таймера щосекунди
+const timerInterval = setInterval(() => {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerText.text = `Time: ${timeLeft}`;
+    }
 
-    // Оновлення таймера щосекунди
-    const timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            timerText.text = `Time: ${timeLeft}`;
-        }
-
-        // Якщо час закінчився і гра ще не завершена
-        if (timeLeft === 0 ) {
-           
-            clearInterval(timerInterval); // Зупиняємо таймер
-            timerText.text = `Time: 0`;
-           
-        }
-    }, 1000);
+    // Якщо час закінчився і гра ще не завершена
+    if (timeLeft === 0 ) {
+       
+        clearInterval(timerInterval); // Зупиняємо таймер
+        timerText.text = `Time: 0`;
+       
+    }
+}, 1000);
+   
 };
+ 
