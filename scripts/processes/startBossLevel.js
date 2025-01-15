@@ -1,3 +1,5 @@
+import {createBoss} from '../objects/boss.js';
+
 export function startBossLevel(app) {
     const boss = createBoss(app);
     app.stage.addChild(boss);

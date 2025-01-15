@@ -1,4 +1,6 @@
-export function initiateBossLevel(message, color) {
+import {startBossLevel} from './startBossLevel.js'
+
+export function initiateBossLevel(app, message, color) {
     let endMessage = new PIXI.Text(message, { fontFamily: 'Arial', fontSize: 36, fill: color, align: 'center' });
     endMessage.x = app.screen.width / 2 - endMessage.width / 2;
     endMessage.y = app.screen.height / 2 - endMessage.height / 2;
@@ -10,7 +12,7 @@ export function initiateBossLevel(message, color) {
         nextLevelButton.y = endMessage.y + endMessage.height + 20;
         nextLevelButton.interactive = true;
         nextLevelButton.buttonMode = true;
-        nextLevelButton.on('pointerdown', startBossLevel);
+        nextLevelButton.on('pointerdown', () => startBossLevel(app));
         app.stage.addChild(nextLevelButton);
     }
 }
