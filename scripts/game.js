@@ -56,15 +56,7 @@ function startGame() {
     // Анімація та обробка астероїдів тепер активна
     manageAsteroids(app, spaceship, asteroids,
         (message, color) => endGame(app, message, color), asteroidData, totalAsteroids);
+        // === Головний цикл гри (оновлюється тільки якщо гра активна) ===
+
 }
 
-// === Головний цикл гри (оновлюється тільки якщо гра активна) ===
-app.ticker.add(() => {
-    if (!isGamePaused) {
-        // Оновлюємо переможні умови тільки якщо гра йде
-        if (asteroids.length === 0 && spaceship.bullets.length === 0 &&
-            asteroidData.spawnedAsteroids >= totalAsteroids) {
-            initiateBossLevel(app, "YOU WIN", "green");
-        }
-    }
-});

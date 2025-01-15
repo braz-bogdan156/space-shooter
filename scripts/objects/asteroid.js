@@ -2,7 +2,7 @@
 
 export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, endGame, asteroidData) => {
     const asteroids = [];
-    let currentSpeed = 1; // Початкова швидкість
+    let currentSpeed = 0.5; // Початкова швидкість
     
 
     // Функція для створення одного астероїда
@@ -27,7 +27,7 @@ export const createAsteroids = (app, totalAsteroids = 10, spawnRate = 3000, endG
         }
 
         // Збільшуємо швидкість астероїдів
-        currentSpeed += 0.5;
+        currentSpeed += 0.1;
 
         // Зупиняємо спаун, якщо всі астероїди створені
         if (asteroidData.spawnedAsteroids >= totalAsteroids) {
